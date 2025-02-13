@@ -1,0 +1,50 @@
+# to create a react app
+npm create vite@latest
+> project name -- frontend
+> framework -- React
+> varient -- Javascript
+
+# traverse to frontend directory
+cd frontend
+
+# install dependencies
+npm install
+
+# install required modules
+npm install react-data-table-component styled-components axios react-icons react-router-dom tailwindcss postcss autoprefixer
+
+# run the application
+npm run dev
+
+# install tainwindcss 
+# paste this in vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+})
+
+# add this to index.css
+@import "tailwindcss";
+
+# creating backend
+mkdir backend
+npm init -y
+
+# install pakages
+npm install bcrypt cors express jsonwebtoken mongoose multer nodemon path
+
+# create index.js file
+touch index.js
+
+# create env file
+touch .env
+
+# run backend server
+npm start
