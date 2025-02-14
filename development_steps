@@ -48,3 +48,10 @@ touch .env
 
 # run backend server
 npm start
+
+# mongo db 
+username : aadheshofficial
+passoword : 44pQIaK9H2aZiXGL
+
+# mongo db uri 
+MONGODB_URI=mongodb+srv://aadheshofficial:44pQIaK9H2aZiXGL@employeemanagementsyste.eolrt.mongodb.net/?retryWrites=true&w=majority&appName=employeeManagementSystem

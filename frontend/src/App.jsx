@@ -1,12 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
+import {BrowserRouter , Routes,Route,Navigate} from 'react-router-dom';
+import Login from "./pages/Login.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
 
 function App() {
 
   return (
-    <div className='text-3xl text-teal-500'>welcome to Employee management system</div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/admin-dashboard"></Navigate>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/admin-dashboard" element={<AdminDashboard/>}></Route>
+
+      </Routes>
+    </BrowserRouter>
+
   )
 }
 
