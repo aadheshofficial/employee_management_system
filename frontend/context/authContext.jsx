@@ -1,19 +1,27 @@
-import React, { createContext } from 'react'
+import React, { createContext, useState, useContext } from "react";
 
-const userContext = createContext()
-const authContext = () => {
-    const [user,setUser] = useState(null)
-    const login = ()=> {
+const UserContext = createContext();
 
-    }
-    const logout =()=>{
+const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
 
-    }
-  return (
-    <userContext.Provider value={{user,login,logout}}>
-        
-    </userContext.Provider>
-  )
-}
+    const login = (userData) => {
+        setUser(userData);
+    };
 
-export default authContext
+    const logout = () => {
+        setUser(null);
+        localStorage.removeItem("token");
+    };
+
+    return (
+        <UserContext.Provider value={{ user, login, logout }}>
+            {children}
+        </UserContext.Provider>
+    );
+};
+
+// Custom Hook for accessing Auth Context
+export const useAuth = () => useContext(UserContext);
+
+export default AuthProvider;

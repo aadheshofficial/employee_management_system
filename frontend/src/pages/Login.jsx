@@ -1,11 +1,15 @@
-import React, { useState } from 'react'; // ✅ Import useState
+import React, { useState } from 'react';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
 
 
 const Login = () => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const [error,setError] = useState(null)
+    const {login} = useAuth()
+    const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -14,7 +18,15 @@ const Login = () => {
         );
         // console.log(response)
         if(response.data.success){
-            alert("success")
+            // alert("success")
+            login(response.data.user)
+            localStorage.setItem("token",response.data.token)
+            if(response.data.user.role === "admin"){
+                navigate('/admin-dashboard')
+            }
+            else{
+                navigate('/employee-dashboard')
+            }
         }
         } catch (error) {
             // console.error(error)
