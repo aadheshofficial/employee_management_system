@@ -9,15 +9,15 @@ const AddDepartment = () => {
         description :''
     })
     const handleChange = (e)=>{
-        const {name,value} = e.tartget;
+        const {name,value} = e.target;
         setDepartment({...department,[name] :value})
     }
     const handleSubmit = async (e)=>{
         e.preventDefault()
         try {
-            const response = await axios.post("http://localhost:5000/api/department/add",department,{
+            const response = await axios.post("http://localhost:3000/api/department/add",department,{
 
-                header:{
+                headers:{
                     "Authorization" : `Bearer ${localStorage.getItem('token')}`
                 }
             }
