@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
+const server_url = import.meta.env.SERVER_URL
 
 
 const Login = () => {
@@ -13,7 +14,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post("http://localhost:3000/api/auth/login",
+            const response = await axios.post(`${server_url}/api/auth/login`,
             {email,password}
         );
         // console.log(response)

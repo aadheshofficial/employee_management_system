@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+const server_url = import.meta.env.SERVER_URL
 
 const AddDepartment = () => {
     const navigate = useNavigate()
@@ -15,7 +16,7 @@ const AddDepartment = () => {
     const handleSubmit = async (e)=>{
         e.preventDefault()
         try {
-            const response = await axios.post("http://localhost:3000/api/department/add",department,{
+            const response = await axios.post(`${server_url}/api/department/add`,department,{
 
                 headers:{
                     "Authorization" : `Bearer ${localStorage.getItem('token')}`
