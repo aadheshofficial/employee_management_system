@@ -1,4 +1,6 @@
 import React, { createContext, useState, useContext ,useEffect} from "react";
+import axios from "axios";
+
 // import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
@@ -21,6 +23,7 @@ const AuthProvider = ({ children }) => {
 
                     }
                     )
+                    console.log(response)
                     if(response.data.success){
                         setUser(response.data.user)
                     }
@@ -28,12 +31,14 @@ const AuthProvider = ({ children }) => {
                 }
                 else{
                     setUser(null)
+                    setLoading(false)
                 }
                 
                 
             } catch (error) {
                 if(error.response && !error.response.data.success){
                     // navigate('/login')
+                    console.log(error)
                     setUser(null)
                     setError(error.response.data.error)
                 }
@@ -43,7 +48,7 @@ const AuthProvider = ({ children }) => {
                 console.error(error)
             }
             finally{
-                setLoading(flase)
+                setLoading(false)
             }
             
         }

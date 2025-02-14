@@ -10,7 +10,7 @@ const verifyUser = async (req,res,next) => {
                 error: "Token not provided"
             })
         }
-        const decoded = await jwt.verify(token,process.env.JWT)
+        const decoded = jwt.verify(token, process.env.JWT)
         if(!decoded){
             return res.status(404).json({
                 success:false,
