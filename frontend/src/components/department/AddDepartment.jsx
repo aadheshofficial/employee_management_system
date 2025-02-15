@@ -44,7 +44,7 @@ const AddDepartment = () => {
                      className='mt-1 w-full p-2 border font-medium placeholder-gray-400 border-gray-300 rounded-md'/>
                 </div>
                 <div>
-                    <lable htmlFor="description" className="block text-sm font-medium text-gray-700">Description</lable>
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
                     <textarea name="description" id="" placeholder='Description' 
                     className='mt-1 p-2 block w-full border h-72 font-medium border-gray-300 placeholder-gray-400 rounded-md'
                     onChange={handleChange}
