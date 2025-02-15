@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-const server_url = import.meta.env.SERVER_URL
+const server_url = import.meta.env.VITE_SERVER_URL
 
 const AddDepartment = () => {
     const navigate = useNavigate()

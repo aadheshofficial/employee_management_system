@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
-const server_url = import.meta.env.SERVER_URL
+const server_url = import.meta.env.VITE_SERVER_URL
 
 
 const Login = () => {
