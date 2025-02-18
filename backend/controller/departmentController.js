@@ -15,4 +15,15 @@ const addDepartment = async (req,res) =>{
     }
 }
 
-export {addDepartment}
+const getDepartments = async (req,res) => {
+    try {
+        const departments = await Department.find()
+        return res.status(200).json({success:true,departments})
+        
+    } catch (error) {
+        return res.status(500).json({success:false,error:"add department server error"})
+        
+    }
+}
+
+export {addDepartment,getDepartments}
