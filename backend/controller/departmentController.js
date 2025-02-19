@@ -21,9 +21,36 @@ const getDepartments = async (req,res) => {
         return res.status(200).json({success:true,departments})
         
     } catch (error) {
-        return res.status(500).json({success:false,error:"add department server error"})
+        return res.status(500).json({success:false,error:"get department server error"})
         
     }
 }
 
-export {addDepartment,getDepartments}
+const getDepartment = async (req,res) => {
+    try {
+        const {id} = req.params;
+        const department = await Department.findById(id)
+        return res.status(200).json({success:true,department})
+    } catch (error) {
+        return res.status(500).json({success:false,error:`edit department server error ${error}`})
+        
+    }
+}
+const updateDepartment = async (req,res) => {
+    try {
+        const {id} = req.params;
+        const {dept_name,description} =req.body;
+        const updateDB = await Department.findByIdAndUpdate({_id:id},{
+            dept_name ,
+            description
+        })
+        return res.status(200).json({success:true,updateDB})
+
+        
+    } catch (error) {
+        return res.status(500).json({success:false,error:`update department server error ${error}`})
+        
+    }
+}
+
+export {addDepartment,getDepartments,getDepartment ,updateDepartment}

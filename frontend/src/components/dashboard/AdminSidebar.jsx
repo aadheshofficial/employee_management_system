@@ -21,7 +21,7 @@ const AdminSidebar = () => {
         </NavLink>
         <NavLink to="/admin-dashboard" className={`flex items-center space-x-4  py-2.5 px-4 rounded`} > 
             <FaUser/>
-            <span>Employeesa</span>
+            <span>Employees</span>
         </NavLink>
         <NavLink to="/admin-dashboard/departments" className={({ isActive }) => 
                 `flex items-center space-x-4 py-2.5 px-4 rounded ${isActive ? "bg-teal-500" : ""}`

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom"
+
 export const columns = [
     {
         name : "S.No",
@@ -9,20 +11,23 @@ export const columns = [
     },
     {
         name : "Action",
-        cell: (row) => <DepartmentButtons />, 
+        cell: (row) => <DepartmentButtons _id={row._id}/>, 
         ignoreRowClick: true,
-        allowOverflow: true,
-        button: true
+        // allowOverflow: true,
+        // button: true
     },
     
     
 ]
 
-export const DepartmentButtons = () => {
+export const DepartmentButtons = ({_id}) => {
+    const navigate = useNavigate()
     return (
-        <div>
-            <button>Edit</button>
-            <button>Delete</button>
+        <div className="flex space-x-3">
+            <button className="px-3 py-1 bg-teal-600 text-white rounded"
+            onClick={() => navigate(`/admin-dashboard/department/${_id}`) }
+            >Edit</button>
+            <button className="px-3 py-1 bg-red-600 text-white rounded">Delete</button>
         </div>
     )
 }
