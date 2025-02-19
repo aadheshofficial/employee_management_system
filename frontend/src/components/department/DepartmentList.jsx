@@ -31,7 +31,7 @@ const DepartmentList = () => {
                             _id : dept._id,
                             sno : sno++,
                             dept_name : dept.dept_name,
-                            action : (<DepartmentButtons _id={dept._id} onDepartmentDelete={onDepartmentDelete}/>)
+                            action : (<DepartmentButtons _id={dept._id} onDepartmentDelete={onDepartmentDelete} />)
 
                         }
                     ))
@@ -76,6 +76,7 @@ const DepartmentList = () => {
                 <DataTable
                     columns={columns(onDepartmentDelete)} 
                     data={filteredDepartments}
+                    pagination
                 />
 
                 </div>

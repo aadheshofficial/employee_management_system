@@ -9,7 +9,8 @@ export const columns = (onDepartmentDelete) => [
     },
     {
         name : "Department Name",
-        selector:(row)=>row.dept_name
+        selector:(row)=>row.dept_name,
+        sortable : true
     },
     {
         name : "Action",
