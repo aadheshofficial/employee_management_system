@@ -8,9 +8,12 @@ const server_url = import.meta.env.VITE_SERVER_URL;
 const DepartmentList = () => {
     const [departments,setDepartments] = useState([])
     const [loading,setLoading] = useState(false)
+    const [filteredDepartments,setFilteredDepartments] = useState([])
     const onDepartmentDelete = (id) => {
         const data = departments.filter(dept => dept._id !== id)
         setDepartments(data)
+        setFilteredDepartments(data);
+        document.getElementById("search-input").value = "";
     }
     useEffect(()=>{
         const fetchDepartment = async ()=>{
@@ -33,6 +36,7 @@ const DepartmentList = () => {
                         }
                     ))
                     setDepartments(data)
+                    setFilteredDepartments(data);
                 }
 
             } catch (error) {
@@ -46,6 +50,12 @@ const DepartmentList = () => {
         }
         fetchDepartment();
     },[])
+    const filterDepartments = (e) => {
+        const records = departments.filter((dept) => 
+            dept.dept_name.toLowerCase().includes(e.target.value.toLowerCase())
+        )
+        setFilteredDepartments(records);
+    }
 
     return (
         <>{loading ? 
@@ -59,13 +69,13 @@ const DepartmentList = () => {
                     <h3 className='text-2xl font-bold'>Manage Department</h3>
                 </div>
                 <div className='flex justify-between items-center h-24' >
-                    <input type="text" name="" id="" placeholder='search by department' className='px-4 py-0.5 h-10 bg-white w-4xl'/>
+                    <input type="text" name="" id="search-input" placeholder='search by department' onChange={filterDepartments} className='px-4 py-0.5 h-10 bg-white w-4xl'/>
                     <Link to="/admin-dashboard/add-new-department" className='flex px-4 py-1 bg-teal-600 border rounded h-10 items-center justify-center text-white'>Add New Department</Link>
                 </div>
                 <div className='mt-5'>
                 <DataTable
                     columns={columns(onDepartmentDelete)} 
-                    data={departments}
+                    data={filteredDepartments}
                 />
 
                 </div>

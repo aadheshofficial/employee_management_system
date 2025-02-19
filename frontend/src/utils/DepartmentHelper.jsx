@@ -35,7 +35,6 @@ export const DepartmentButtons = ({_id,onDepartmentDelete}) => {
                 })
                 console.log("Server Response:", response.data);
                 if (response.data.success){
-                    console.log("succes in deletilon")
                     onDepartmentDelete(_id)
                 }
     
