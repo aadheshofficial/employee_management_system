@@ -2,8 +2,10 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
 const verifyUser = async (req,res,next) => {
+    let tt1 = "nu";
     try {
         const token = req.headers.authorization.split(' ')[1];
+        tt1 = token;
         if(!token){
             return res.status(404).json({
                 success:false,
@@ -29,7 +31,7 @@ const verifyUser = async (req,res,next) => {
     } catch (error) {
         return res.status(500).json({
             success:false,
-            error: "server side error"
+            error: `server side error + ${error} ${tt1}`
         })
     }
     

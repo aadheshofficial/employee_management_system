@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DataTable from 'react-data-table-component'
 import { columns, DepartmentButtons } from '../../utils/DepartmentHelper.jsx'
+import axios from "axios";
 const server_url = import.meta.env.VITE_SERVER_URL;
 
 const DepartmentList = () => {
