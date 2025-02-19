@@ -77,6 +77,18 @@ const DepartmentList = () => {
                     columns={columns(onDepartmentDelete)} 
                     data={filteredDepartments}
                     pagination
+                    highlightOnHover
+                    sortable
+                    customStyles={{
+                        headCells: {
+                            style: {
+                                fontWeight: "bold", 
+                                fontSize: "16px",  
+                                backgroundColor: "#f3f4f6", 
+                                color: "#000", 
+                            },
+                        },
+                    }}
                 />
 
                 </div>
