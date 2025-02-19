@@ -8,6 +8,10 @@ const server_url = import.meta.env.VITE_SERVER_URL;
 const DepartmentList = () => {
     const [departments,setDepartments] = useState([])
     const [loading,setLoading] = useState(false)
+    const onDepartmentDelete = (id) => {
+        const data = departments.filter(dept => dept._id !== id)
+        setDepartments(data)
+    }
     useEffect(()=>{
         const fetchDepartment = async ()=>{
             setLoading(true)
@@ -24,7 +28,7 @@ const DepartmentList = () => {
                             _id : dept._id,
                             sno : sno++,
                             dept_name : dept.dept_name,
-                            action : (<DepartmentButtons />)
+                            action : (<DepartmentButtons _id={dept._id} onDepartmentDelete={onDepartmentDelete}/>)
 
                         }
                     ))
@@ -59,9 +63,11 @@ const DepartmentList = () => {
                     <Link to="/admin-dashboard/add-new-department" className='flex px-4 py-1 bg-teal-600 border rounded h-10 items-center justify-center text-white'>Add New Department</Link>
                 </div>
                 <div className='mt-5'>
-                    <DataTable
-                    columns={columns} data={departments}
-                    />
+                <DataTable
+                    columns={columns(onDepartmentDelete)} 
+                    data={departments}
+                />
+
                 </div>
             </div>
         }</>
