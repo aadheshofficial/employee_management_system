@@ -3,6 +3,8 @@ import Employee from "../models/Employee.js"
 import User from "../models/User.js"
 import bcrypt from "bcrypt"
 import path from "path"
+import Department from "../models/Department.js"
+
 const storage = multer.diskStorage({
     destination: (req,file,cb) => {
         cb(null,"public/uploads")
@@ -29,7 +31,7 @@ const addEmployee = async(req,res) => {
             password,
             role,
         } = req.body;
-        console.log(req.body)
+        // console.log(req.body)
         const user = await User.findOne({email})
         if(user){
             return res.status(400).json({success:false,error:"User already exist"})
@@ -85,5 +87,44 @@ const getEmployee = async (req,res) => {
 
     }
 }
+const updateEmployee = async (req,res) => {
+    try {
+        const {id} = req.params;
+        const {
+            name,
+            maritalstatus,
+            designation,
+            department,
+            salary
+        } = req.body;
+        console.log(req.body)
 
-export {addEmployee,upload,getEmployees,getEmployee}
+        const employee = await Employee.findById({_id:id})
+        if(!employee){
+        return res.status(500).json({success:false,error:"no employee found"+error})
+        }
+        const user = await User.findById({_id:employee.userId})
+        if(!user){
+        return res.status(500).json({success:false,error:"no user found"+error})
+        }
+        const updateUser = await User.findByIdAndUpdate({_id:employee.userId},{
+            name
+        })
+        const updateEmployee = await Employee.findByIdAndUpdate({_id:id},{
+            maritalstatus,
+            designation,
+            salary,
+            department
+        })
+        if(!updateUser || !updateEmployee){
+        return res.status(500).json({success:false,error:"update employee details server error"+error})
+        }
+        return res.status(200).json({success:true,message:"employee updated successfullt"});
+        
+    } catch (error) {
+        return res.status(500).json({success:false,error:"update employee details server error"+error})
+        
+    }
+}
+
+export {addEmployee,upload,getEmployees,getEmployee,updateEmployee}

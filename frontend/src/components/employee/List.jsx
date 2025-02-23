@@ -9,7 +9,7 @@ const server_url = import.meta.env.VITE_SERVER_URL;
 const List = () => {
     const [employees,setEmployees] = useState([])
     const [loading,setLoading] = useState(false)
-    // const [filteredEmployees,setFilteredEmployees] = useState([])
+    const [filteredEmployees,setFilteredEmployees] = useState([])
     const navigate = useNavigate()
     
     useEffect(() => {
@@ -22,7 +22,7 @@ const List = () => {
                     }
                 });
     
-                console.log("API Response:", response.data);
+                // console.log("API Response:", response.data);
                 if (response.data.success && Array.isArray(response.data.employee)) {
                     let sno = 1;
                     const data = response.data.employee.map((emp) => ({
@@ -35,9 +35,11 @@ const List = () => {
                     }));
     
                     setEmployees(data);
+                    setFilteredEmployees(data)
                 } else {
                     console.error("Employees data is not an array:", response.data.employees);
                     setEmployees([]);
+                    setFilteredEmployees([])
                 }
 
             } catch (error) {
@@ -49,16 +51,15 @@ const List = () => {
                 setLoading(false);
             }
         };
-        // const filterEmployees = (e) => {
-        //     const records = employees.filter((emp) => 
-        //         emp.name.toLowerCase().includes(e.target.value.toLowerCase())
-        //     )
-        //     setFilteredEmployees(records);
-        // }
         fetchEmployees();
     }, []);
     
-
+    const handleFilter = (e) => {
+        const records = employees.filter((emp) => 
+            emp.name.toLowerCase().includes(e.target.value.toLowerCase())
+        )
+        setFilteredEmployees(records);
+    }
     
     
 
@@ -74,13 +75,14 @@ const List = () => {
                     <h3 className='text-2xl font-bold'>Manage Employee</h3>
                 </div>
                 <div className='flex justify-between items-center h-24' >
-                    <input type="text" name="" id="search-input" placeholder='search name'  className='px-4 py-0.5 h-10 bg-white w-4xl'/>
+                    <input type="text" name="" id="search-input" placeholder='search name' onChange={handleFilter} className='px-4 py-0.5 h-10 bg-white w-4xl'/>
                     <Link to="/admin-dashboard/employees/add-employee" className='flex px-4 py-1 bg-teal-600 border rounded h-10 items-center justify-center text-white'>Add New Employee</Link>
                 </div>
                 <div className='mt-5'>
                 <DataTable
                     columns={columns} 
-                    data={employees}
+                    data={filteredEmployees}
+                    onRowClicked={(row) => navigate(`/admin-dashboard/employees/${row._id}`)}
                     pagination
                     highlightOnHover
                     sortable

@@ -28,12 +28,12 @@ export const columns = [
     {
         name : "S.No",
         selector:(row)=>row.sno,
-        center:true,
+        style: { textAlign: "center" },
         width:"70px"
     },
     {
         name : "Profile",
-        center:true,
+        style: { textAlign: "center" },
         selector:(row)=><img src={`${server_url}/${row.profileImage}`} width={40} alt="Profile" className="w-10 h-10 rounded-full" />,
         width:"100px"
         
@@ -63,7 +63,7 @@ export const columns = [
         name : "Action",
         cell: (row) => <EmployeeButtons _id={row._id} />, 
         ignoreRowClick: true,
-        center:true
+        style: { textAlign: "center" }
         // allowOverflow: true,
         // button: true
     },
@@ -81,6 +81,7 @@ export const EmployeeButtons = ({_id}) => {
             onClick={() => navigate(`/admin-dashboard/employees/${_id}`) }
             >View</button>
             <button className="px-3 py-1 bg-blue-600 text-white rounded"
+            onClick={()=> navigate(`/admin-dashboard/employees/edit/${_id}`)}
             >Edit</button>
             <button className="px-3 py-1 bg-yellow-600 text-white rounded"
             >Salary</button>
