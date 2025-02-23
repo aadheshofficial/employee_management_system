@@ -30,7 +30,7 @@ const List = () => {
                         sno: sno++,
                         dept_name: emp?.department?.dept_name || "N/A",
                         name: emp?.userId?.name || "N/A",
-                        dob: emp?.dob ? new Date(emp.dob).toDateString() : "N/A",
+                        dob: emp?.dob ? new Date(emp.dob).toLocaleDateString() : "N/A",
                         profileImage: emp?.userId?.profileImage || "",
                     }));
     

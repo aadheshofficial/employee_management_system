@@ -27,21 +27,30 @@ export const fetchDepartment = async ()=>{
 export const columns = [
     {
         name : "S.No",
-        selector:(row)=>row.sno
+        selector:(row)=>row.sno,
+        center:true,
+        width:"70px"
+    },
+    {
+        name : "Profile",
+        center:true,
+        selector:(row)=><img src={`${server_url}/${row.profileImage}`} width={40} alt="Profile" className="w-10 h-10 rounded-full" />,
+        width:"100px"
+        
     },
     {
         name : "Name",
         selector:(row)=>row.name,
-        sortable : true
-    },
-    {
-        name : "Profile",
-        selector:(row)=><img src={row.profileImage} alt="Profile" className="w-10 h-10 rounded-full" />,
+        sortable : true,
+        width:"150px"
+
     },
     {
         name : "Department",
         selector:(row)=>row.dept_name,
-        sortable : true
+        sortable : true,
+        width:"150px"
+
     },
     
     {
@@ -54,6 +63,7 @@ export const columns = [
         name : "Action",
         cell: (row) => <EmployeeButtons _id={row._id} />, 
         ignoreRowClick: true,
+        center:true
         // allowOverflow: true,
         // button: true
     },
@@ -68,13 +78,13 @@ export const EmployeeButtons = ({_id}) => {
     return (
         <div className="flex space-x-3">
             <button className="px-3 py-1 bg-teal-600 text-white rounded"
-            onClick={() => navigate(`/admin-dashboard/department/${_id}`) }
+            onClick={() => navigate(`/admin-dashboard/employees/${_id}`) }
             >View</button>
             <button className="px-3 py-1 bg-blue-600 text-white rounded"
             >Edit</button>
             <button className="px-3 py-1 bg-yellow-600 text-white rounded"
             >Salary</button>
-            <button className="px-3 py-1 bg-green-600 text-white rounded"
+            <button className="px-3 py-1 bg-red-600 text-white rounded"
             >Leave</button>
         </div>
     )
