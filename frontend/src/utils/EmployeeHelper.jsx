@@ -24,6 +24,28 @@ export const fetchDepartment = async ()=>{
     
 }
 
+export const fetchEmployees = async (id) =>{
+    let employee;
+    try {
+        const response = await axios.get(`${server_url}/api/employee/department/${id}`,{
+            headers :{
+                "Authorization" :`Bearer ${localStorage.getItem("token")}`
+            }
+        })
+        // console.log(response.data.employee)
+        if (response.data.success){
+            employee = response.data.employee
+        }
+
+    } catch (error) {
+        if(error.response && error.response.data.success){
+            alert(error.response.data.error)
+        }
+    }
+    return employee;
+    
+}
+
 export const columns = [
     {
         name : "S.No",
@@ -84,6 +106,7 @@ export const EmployeeButtons = ({_id}) => {
             onClick={()=> navigate(`/admin-dashboard/employees/edit/${_id}`)}
             >Edit</button>
             <button className="px-3 py-1 bg-yellow-600 text-white rounded"
+            onClick={()=> navigate(`/admin-dashboard/employees/salary/${_id}`)}
             >Salary</button>
             <button className="px-3 py-1 bg-red-600 text-white rounded"
             >Leave</button>
