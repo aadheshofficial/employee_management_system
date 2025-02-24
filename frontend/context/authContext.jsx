@@ -1,5 +1,7 @@
 import React, { createContext, useState, useContext ,useEffect} from "react";
 import axios from "axios";
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 
 // import { useNavigate } from "react-router-dom";
 
@@ -16,7 +18,7 @@ const AuthProvider = ({ children }) => {
             try {
                 const token = localStorage.getItem('token')
                 if(token){
-                    const response = await axios.get('http://localhost:3000/api/auth/verify',{
+                    const response = await axios.get(`${server_url}/api/auth/verify`,{
                         headers : {
                             "Authorization" : `Bearer ${token}`
                         }
