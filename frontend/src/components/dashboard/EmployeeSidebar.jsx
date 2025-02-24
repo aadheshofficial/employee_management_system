@@ -33,7 +33,7 @@ const EmployeeSidebar = () => {
             <FaBuilding/>
             <span>Department</span>
         </NavLink> */}
-        <NavLink to="/employee-dashboard/Leave" className={({ isActive }) => 
+        <NavLink to="/employee-dashboard/leave" className={({ isActive }) => 
                 `flex items-center space-x-4 py-2.5 px-4 rounded ${isActive ? "bg-teal-500" : ""}`
               }
               end>

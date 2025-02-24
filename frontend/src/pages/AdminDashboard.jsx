@@ -8,7 +8,7 @@ import AdminSummary from "../components/dashboard/AdminSummary.jsx"
 
 const AdminDashboard = () => {
   return (
-    <div>
+    <div className='bg-gray-200'>
       <AdminSidebar/>
       <div className="flex-1 ml-64 bg-grey-100 h-screen">
         <NavBar/>

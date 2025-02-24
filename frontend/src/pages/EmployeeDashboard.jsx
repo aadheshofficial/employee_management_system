@@ -6,7 +6,7 @@ import NavBar from "../components/dashboard/NavBar.jsx"
 
 const AdminDashboard = () => {
   return (
-    <div>
+    <div className='bg-gray-200'>
       <EmployeeSidebar/>
       <div className="flex-1 ml-64 bg-grey-100 h-screen">
         <NavBar/>
