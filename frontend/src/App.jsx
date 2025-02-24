@@ -14,6 +14,7 @@ import View from './components/employee/View.jsx';
 import Edit from './components/employee/Edit.jsx';
 import AddSalary from './components/salary/AddSalary.jsx';
 import ViewSalary from './components/salary/ViewSalary.jsx';
+import UnAuthorized from './utils/UnAuthorized.jsx';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/admin-dashboard"></Navigate>}></Route>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path='/unauthorized' element={<UnAuthorized/>}></Route>
         <Route path="/admin-dashboard" element={
           <PrivateRoutes>
             <RoleBasedRoutes requiredRole={["admin"]}>
@@ -45,11 +47,13 @@ function App() {
           </Route>
         <Route path="/employee-dashboard" element={
           <PrivateRoutes>
-          <RoleBasedRoutes requiredRole={["admin"]}>
+          <RoleBasedRoutes requiredRole={["admin","employee"]}>
             <EmployeeDashboard/>
           </RoleBasedRoutes>
         </PrivateRoutes>
-        }></Route>
+        }>
+
+        </Route>
 
       </Routes>
     </BrowserRouter>

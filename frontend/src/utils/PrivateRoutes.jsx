@@ -6,7 +6,11 @@ const PrivateRoutes = ({children}) => {
   const {user,loading} = useAuth()
   
   if(loading){
-    return <div>loading ... </div>
+    return <div>
+              <div className="flex items-center justify-center h-max">
+                  <div className="w-16 h-16 border-4 border-t-transparent border-teal-600 rounded-full animate-spin"></div>
+              </div>
+          </div> 
   }
   return user ? children : <Navigate to="/login" />
 }

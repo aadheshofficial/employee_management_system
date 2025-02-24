@@ -7,9 +7,6 @@ import AdminSummary from "../components/dashboard/AdminSummary.jsx"
 
 
 const AdminDashboard = () => {
-  const {user,} = useAuth()
-
-  
   return (
     <div>
       <AdminSidebar/>
