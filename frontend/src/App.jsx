@@ -58,7 +58,7 @@ function App() {
         </PrivateRoutes>
         }>
             <Route index element={<Summery/>}></Route>
-            <Route path='/employee-dashboard/profile' element={<EmployeeProfile/>}></Route>
+            <Route path='/employee-dashboard/profile/:id' element={<EmployeeProfile/>}></Route>
             <Route path='/employee-dashboard/leave' element={<EmployeeLeave/>}></Route>
             <Route path='/employee-dashboard/salary' element={<EmployeeSalary/>}></Route>
             <Route path='/employee-dashboard/settings' element={<EmployeeSettings/>}></Route>
