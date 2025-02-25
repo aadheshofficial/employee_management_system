@@ -92,7 +92,7 @@ const ViewSalary = () => {
                 <div className="text-center mt-28">
                     <h2 className="text-2xl font-bold">No Data</h2>
                 </div>
-            }
+                }
             </div>
 
     )}</>
