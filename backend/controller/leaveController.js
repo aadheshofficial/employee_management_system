@@ -1,6 +1,28 @@
 import Employee from "../models/Employee.js";
 import Leave from "../models/Leave.js";
 
+const fetchLeave = async (req,res) => {
+    try {
+        const leave = await Leave.find().populate({
+            path :"employeeId",
+            populate: [
+            { 
+                path: "department" ,
+                selector:"dept_name"
+            },
+            {
+                path:"userId",
+                selector:"name"
+            }
+            ]            
+        })
+        // console.log(leave)
+        return res.status(200).json({success:true,leave})
+    } catch (error) {
+        return res.status(500).json({success:false,error:`error in fetch leave server ${error}`})
+        
+    }
+}
 
 const applyLeave = async(req,res) => {
     try {
@@ -43,4 +65,4 @@ const getLeave = async (req,res) => {
 
 }
 
-export { applyLeave ,getLeave}
+export { applyLeave ,getLeave,fetchLeave}
