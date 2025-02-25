@@ -45,7 +45,7 @@ const Add = () => {
             }
             )
             if(response.data.success){
-                alert("added employee successfully")
+                // alert("added employee successfully")
                 navigate("/admin-dashboard/employees")
             }
         } catch (error) {

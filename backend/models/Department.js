@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import Employee from "./Employee.js";
+import Salary from "./Salary.js";
+import Leave from "./Leave.js";
 
 const departmentSchema = new mongoose.Schema({
     dept_name :{
@@ -13,6 +16,19 @@ const departmentSchema = new mongoose.Schema({
     },
     updatedAt:{
         type:Date,default:Date.now
+    }
+})
+
+departmentSchema.pre("deleteOne",{document:true,query:false},async function(next) {
+    try {
+        const emp = await Employee.find({department:this._id})
+        const empIds = emp.map(emp=>emp._id)
+        await Employee.deleteMany({department:this._id})
+        await Leave.deleteMany({employeeId:{$in :empIds}})
+        await Salary.deleteMany({employeeId:{$in :empIds}})
+        next()
+    } catch (error) {
+        next(error)
     }
 })
 

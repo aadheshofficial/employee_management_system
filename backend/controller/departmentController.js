@@ -56,7 +56,8 @@ const updateDepartment = async (req,res) => {
 const deleteDepartment = async (req,res) => {
     try {
         const {id} = req.params;
-        const data = await Department.findByIdAndDelete(id)
+        const data = await Department.findById(id)
+        await data.deleteOne();
         if (!data) {
             return res.status(404).json({ success: false, error: "Department not found" });
         }
