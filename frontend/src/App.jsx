@@ -17,7 +17,6 @@ import ViewSalary from './components/salary/ViewSalary.jsx';
 import UnAuthorized from './utils/UnAuthorized.jsx';
 import Summery from './components/employee_dashboard/Summery.jsx';
 import EmployeeProfile from './components/employee_dashboard/EmployeeProfile.jsx';
-import EmployeeSalary from './components/employee_dashboard/EmployeeSalary.jsx';
 import EmployeeSettings from './components/employee_dashboard/EmployeeSettings.jsx';
 import ListLeave from './components/leave/ListLeave.jsx';
 import ApplyLeave from './components/leave/ApplyLeave.jsx';
@@ -62,7 +61,7 @@ function App() {
             <Route path='/employee-dashboard/profile/:id' element={<EmployeeProfile/>}></Route>
             <Route path='/employee-dashboard/leave' element={<ListLeave/>}></Route>
             <Route path='/employee-dashboard/leave/apply-leave' element={<ApplyLeave/>}></Route>
-            <Route path='/employee-dashboard/salary' element={<EmployeeSalary/>}></Route>
+            <Route path='/employee-dashboard/salary/:id' element={<ViewSalary/>}></Route>
             <Route path='/employee-dashboard/settings' element={<EmployeeSettings/>}></Route>
         </Route>
 

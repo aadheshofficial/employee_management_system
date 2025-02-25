@@ -58,7 +58,7 @@ const ViewSalary = () => {
                 </div>
 
                 {filteredSalary.length > 0 ? (
-                    <table className="w-full text-sm text-left text-gray-500 ">
+                    <table className="w-full text-sm text-left mt-5 text-gray-500 ">
                         <thead className="text-xs text-gray-700 uppercase  bg-gray-300 border border-gray-200">
                             <tr>
                                 <th className="px-6 py-3">Sno</th>
