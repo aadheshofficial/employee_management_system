@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../../../context/authContext";
 import axios from "axios";
+
 const server_url = import.meta.env.VITE_SERVER_URL;
 
-const ListLeave = () => {
-  const { user } = useAuth();
-  const id = user._id;
+const LeaveHistory = () => {
+  const { id } = useParams();
   const [leave, setLeave] = useState([]);
   const [filteredLeave,setFilteredLeave] = useState([]);
 
   const fetchLeave = async () => {
     try {
-      const response = await axios.get(`${server_url}/api/leave/${id}`, {
+      const response = await axios.get(`${server_url}/api/leave/history/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -82,21 +82,16 @@ const ListLeave = () => {
   return (
     <div className="p-6 bg-gray-200 h-screen">
       <div className="text-center">
-        <h3 className="text-2xl font-bold">Manage Leave</h3>
+        <h3 className="text-2xl font-bold">Leave history</h3>
       </div>
       <div className="flex justify-between items-center h-24">
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search By Applied Date"
           onChange={filterByDate}
           className="px-4 py-0.5 h-10 bg-white w-4xl"
         />
-        <Link
-          to="/employee-dashboard/leave/apply-leave"
-          className="flex px-4 py-1 bg-teal-600 border rounded h-10 items-center justify-center text-white"
-        >
-          Apply Leave
-        </Link>
+        
       </div>
 
       <div className="mt-5">
@@ -119,4 +114,4 @@ const ListLeave = () => {
   );
 };
 
-export default ListLeave;
+export default LeaveHistory;

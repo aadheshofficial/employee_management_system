@@ -22,6 +22,7 @@ import ListLeave from './components/leave/ListLeave.jsx';
 import ApplyLeave from './components/leave/ApplyLeave.jsx';
 import AdminLeaveList from "./components/leave/AdminLeaveList.jsx"
 import AdminViewLeave from './components/leave/AdminViewLeave.jsx';
+import LeaveHistory from './components/leave/LeaveHistory.jsx';
 
 function App() {
 
@@ -48,12 +49,13 @@ function App() {
             <Route path="/admin-dashboard/employees/:id" element={<View/>}></Route>
             <Route path="/admin-dashboard/employees/edit/:id" element={<Edit/>}></Route>
             <Route path="/admin-dashboard/employees/add-employee" element={<Add/>}></Route>
+            <Route path="/admin-dashboard/employees/salary/:id" element={<ViewSalary/>}></Route>
+            <Route path="/admin-dashboard/employees/leave/:id" element={<LeaveHistory/>}></Route>
 
             <Route path="/admin-dashboard/leave" element={<AdminLeaveList/>}></Route>
             <Route path="/admin-dashboard/leave/detail/:id" element={<AdminViewLeave/>}></Route>
 
             <Route path="/admin-dashboard/salary" element={<AddSalary/>}></Route>
-            <Route path="/admin-dashboard/employees/salary/:id" element={<ViewSalary/>}></Route>
           </Route>
         <Route path="/employee-dashboard" element={
           <PrivateRoutes>

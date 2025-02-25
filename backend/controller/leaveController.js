@@ -63,6 +63,21 @@ const getLeave = async (req,res) => {
 
 }
 
+const getHistory = async (req,res) => {
+    try {
+        const {id} = req.params;
+        // console.log(id)
+        
+        const leave = await Leave.find({employeeId : id});
+        // console.log(leave)
+        return res.status(200).json({success:true,leave});
+        
+    } catch (error) {
+        return res.status(500).json({success:false,error:`error in leave history server ${error}`})
+        
+    }
+}
+
 const updateLeaveById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -111,4 +126,4 @@ const getLeaveById =async(req,res)=>{
     }
 }
 
-export { applyLeave ,getLeave,fetchLeave,getLeaveById,updateLeaveById}
+export { applyLeave ,getLeave,fetchLeave,getLeaveById,updateLeaveById,getHistory}
