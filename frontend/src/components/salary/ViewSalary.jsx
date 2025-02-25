@@ -12,7 +12,7 @@ const ViewSalary = () => {
 
     const fetchSalaries = async () => {
         try {
-            const response = await axios.get(`${server_url}/api/salary/${id}`, {
+            const response = await axios.get(`${server_url}/api/salary/employee/${id}`, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
                 }
