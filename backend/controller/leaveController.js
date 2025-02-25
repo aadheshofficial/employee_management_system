@@ -54,9 +54,7 @@ const getLeave = async (req,res) => {
         const {id} = req.params;
         const emp = await Employee.findOne({userId:id});
         const leave = await Leave.find({employeeId : emp._id});
-        if (leave && emp ){
-            return res.status(200).json({success:true,leave});
-        }
+        return res.status(200).json({success:true,leave});
         
     } catch (error) {
         return res.status(500).json({success:false,error:`error in leave apply server ${error}`})
@@ -65,4 +63,52 @@ const getLeave = async (req,res) => {
 
 }
 
-export { applyLeave ,getLeave,fetchLeave}
+const updateLeaveById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+
+        const updatedLeave = await Leave.findByIdAndUpdate(
+            id, 
+            { status }, 
+            { new: true } 
+        );
+
+        if (!updatedLeave) {
+            return res.status(404).json({ success: false, error: "Leave request not found" });
+        }
+
+        return res.status(200).json({ success: true, message: "Status updated successfully", leave: updatedLeave });
+    } catch (error) {
+        return res.status(500).json({ success: false, error: `Error updating leave status: ${error.message}` });
+    }
+};
+
+
+const getLeaveById =async(req,res)=>{
+
+    try {
+        const {id} = req.params;
+        const leave = await Leave.findById(id).populate([
+        {
+            path :"employeeId",
+            populate:[{
+                path:"userId",
+                selector:"name"
+            },
+            {
+                path:"department",
+                selector:"dept_name"
+            }]
+        },
+        ]);
+        return res.status(200).json({success:true,leave});
+
+
+    } catch (error) {
+        return res.status(500).json({success:false,error:`error in leave by id server ${error}`})
+        
+    }
+}
+
+export { applyLeave ,getLeave,fetchLeave,getLeaveById,updateLeaveById}

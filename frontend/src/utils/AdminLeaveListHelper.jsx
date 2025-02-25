@@ -47,7 +47,7 @@ export const columns = [
 export const LeaveButton = ({id}) => {
     const navigate = useNavigate();
     const handleView = () =>{
-        navigate(`/admin-dashboard/leave/${id}`);
+        navigate(`/admin-dashboard/leave/detail/${id}`);
     }
     return (
         <button className="px-4 py-1 bg-teal-500 rounded text-white hover:bg-teal-600" onClick={handleView}>
