@@ -73,7 +73,7 @@ const ViewSalary = () => {
                         <tbody>
                             {filteredSalary.map((salary)=> (
                                 <tr
-                                key={salary.id}
+                                key={salary._id}
                                 className='bg-white border-b dark:bg-gray-50 dark:border-gray-700'>
                                     <td className="px-6 text-gray-800 py-3">{sno++}</td>
                                     <td className="px-6 text-gray-800 py-3">{salary.employeeId.employeeId}</td>
