@@ -62,6 +62,13 @@ const AdminLeaveList = () => {
     setFilteredLeave(records);
     }
 
+    const filterByButton = (status) => {
+      const records = leave.filter((l) => 
+        l.status.toLowerCase().includes(status.toLowerCase())
+    )
+    setFilteredLeave(records);
+    }
+
     useEffect(()=>{
         fetchLeave()
     },[])
@@ -79,9 +86,9 @@ const AdminLeaveList = () => {
           className="px-4 py-0.5 h-10 bg-white "
         />
         <div className='space-x-3'>
-        <button className='bg-green-600 hover:bg-green-700 text-white h-10 px-5 rounded-md'>Approved</button>
-        <button className='bg-yellow-600 hover:bg-yellow-700 text-white h-10 px-5 rounded-md'>Pending</button>
-        <button className='bg-red-600 hover:bg-red-700 text-white h-10 px-5 rounded-md'>Rejected</button>
+        <button className='bg-green-600 hover:bg-green-700 text-white h-10 px-5 rounded-md' onClick={()=>filterByButton("approved")}>Approved</button>
+        <button className='bg-yellow-600 hover:bg-yellow-700 text-white h-10 px-5 rounded-md' onClick={()=>filterByButton("pending")}>Pending</button>
+        <button className='bg-red-600 hover:bg-red-700 text-white h-10 px-5 rounded-md' onClick={()=>filterByButton("rejected")}>Rejected</button>
         </div>
       </div>
       <>{loading ? 
