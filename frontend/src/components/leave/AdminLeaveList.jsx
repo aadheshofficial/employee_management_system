@@ -9,6 +9,7 @@ const AdminLeaveList = () => {
     const [loading,setLoading] =useState(false);
     const [error,setError] = useState();
     const [leave,setLeave] = useState([]);
+    const [filteredLeave,setFilteredLeave] = useState([]);
     let sno=1;
     const fetchLeave = async () => {
         setLoading(true)
@@ -34,6 +35,7 @@ const AdminLeaveList = () => {
                 action: (<LeaveButton id={l._id}/>)
             }))
             setLeave(data)
+            setFilteredLeave(data)
             setLoading(false)
             setError("")
   
@@ -53,6 +55,12 @@ const AdminLeaveList = () => {
             setLoading(false)
           }
     }
+    const handleFilter = (e) =>{
+      const records = leave.filter((l) => 
+        l.employeeId.toLowerCase().includes(e.target.value.toLowerCase())
+    )
+    setFilteredLeave(records);
+    }
 
     useEffect(()=>{
         fetchLeave()
@@ -67,6 +75,7 @@ const AdminLeaveList = () => {
         <input
           type="text"
           placeholder="Search"
+          onChange={handleFilter}
           className="px-4 py-0.5 h-10 bg-white "
         />
         <div className='space-x-3'>
@@ -84,7 +93,7 @@ const AdminLeaveList = () => {
         <div>
             <DataTable
             columns={columns}
-            data = {leave}
+            data = {filteredLeave}
             pagination
             >
 
