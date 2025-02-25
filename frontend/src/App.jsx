@@ -23,6 +23,7 @@ import ApplyLeave from './components/leave/ApplyLeave.jsx';
 import AdminLeaveList from "./components/leave/AdminLeaveList.jsx"
 import AdminViewLeave from './components/leave/AdminViewLeave.jsx';
 import LeaveHistory from './components/leave/LeaveHistory.jsx';
+import AdminSetting from './components/dashboard/AdminSetting.jsx';
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
             <Route path="/admin-dashboard/leave/detail/:id" element={<AdminViewLeave/>}></Route>
 
             <Route path="/admin-dashboard/salary" element={<AddSalary/>}></Route>
+            <Route path="/admin-dashboard/setting" element={<AdminSetting/>}></Route>
           </Route>
         <Route path="/employee-dashboard" element={
           <PrivateRoutes>

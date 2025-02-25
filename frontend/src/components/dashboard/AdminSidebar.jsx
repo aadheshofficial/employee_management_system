@@ -47,7 +47,7 @@ const AdminSidebar = () => {
             <FaMoneyBillAlt/>
             <span>Salary</span>
         </NavLink>
-        <NavLink to="/admin-dashboard/settings" className={({ isActive }) => 
+        <NavLink to="/admin-dashboard/setting" className={({ isActive }) => 
                 `flex items-center space-x-4 py-2.5 px-4 rounded ${isActive ? "bg-teal-500" : ""}`
               }
               end>

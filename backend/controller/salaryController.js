@@ -7,7 +7,7 @@ const fetchSalaryById = async (req,res) => {
         // console.log(id)
         let salary;
         salary = await Salary.find({employeeId:id}).populate("employeeId",'employeeId');
-        console.log(salary)
+        // console.log(salary)
         if(salary.length === 0){
             // console.log("no sal")
             const emp = await Employee.findOne({userId:id})
