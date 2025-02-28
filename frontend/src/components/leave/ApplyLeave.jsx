@@ -47,7 +47,7 @@ const ApplyLeave = () => {
             <div className="flex flex-col space-y-4 mt-5">
                 <lable className="block text-sm font-medium text-gray-700">Leave Type</lable>
                 <select name="leaveType" id="" onChange={handleChange} required className='mt-1 p-2 block w-full border border-gray-300 rounded-md'>
-                    <option value="">Select Department</option>
+                    <option value="">Select Leave</option>
                     <option value="SickLeave">Sick Leave</option>
                     <option value="CasualLeave">Casual Leave</option>
                     <option value="AnnualLeave">Annual Leave</option>

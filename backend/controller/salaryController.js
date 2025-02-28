@@ -25,6 +25,7 @@ const fetchSalaryByUser = async (req,res) => {
     try {
         const {id} = req.params;
         const emp = await Employee.findOne({userId:id})
+        // console.log(emp)
         const salary = await Salary.find({employeeId:emp._id}).populate("employeeId",'employeeId');   
         return res.status(200).json({success:true,salary})        
     } catch (error) {

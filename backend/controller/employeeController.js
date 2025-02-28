@@ -141,4 +141,22 @@ const fetchEmployeeByDeptId = async (req,res) => {
     }
 }
 
-export {addEmployee,upload,getEmployees,getEmployee,updateEmployee,fetchEmployeeByDeptId}
+
+const deteleEmpleeById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Find and delete the employee
+        const deletedEmployee = await Employee.findByIdAndDelete(id);
+
+        if (!deletedEmployee) {
+            return res.status(404).json({ success: false, message: "Employee not found" });
+        }
+
+        return res.status(200).json({ success: true, message: "Employee deleted successfully" });
+    } catch (error) {
+        return res.status(500).json({ success: false, error: "Error deleting employee" });
+    }
+}
+
+export {addEmployee,upload,getEmployees,getEmployee,updateEmployee,fetchEmployeeByDeptId,deteleEmpleeById}

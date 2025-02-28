@@ -7,6 +7,10 @@ import salaryRouter from './routes/salary.js'
 import leaveRouter from './routes/leave.js'
 import settingRouter from './routes/setting.js'
 import connectToDatabase from "./db/db.js"
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load .env variables at startup
+console.log("Server running on port:", process.env.PORT);
 
 connectToDatabase()
 const app = express()
